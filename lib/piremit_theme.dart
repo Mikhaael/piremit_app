@@ -8,7 +8,7 @@ class PiremitTheme {
       fontSize: 22.0, fontWeight: FontWeight.w600, color: kPrimaryColor
     ),
     headline1: GoogleFonts.titilliumWeb(
-      fontSize: 45.0, fontWeight: FontWeight.w600, color: kTextColor
+      fontSize: 45.0, fontWeight: FontWeight.w600, color: kPrimaryColor
     ),
     headline3: GoogleFonts.poppins(
       fontSize: 14.0, fontWeight: FontWeight.w400, color: kTextColor
