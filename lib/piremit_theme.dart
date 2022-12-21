@@ -7,6 +7,9 @@ class PiremitTheme {
     bodyText1: GoogleFonts.titilliumWeb(
       fontSize: 22.0, fontWeight: FontWeight.w600, color: kPrimaryColor
     ),
+    bodyText2: GoogleFonts.titilliumWeb(
+        fontSize: 12.0, fontWeight: FontWeight.w300, color: kTextColor
+    ),
     headline1: GoogleFonts.titilliumWeb(
       fontSize: 45.0, fontWeight: FontWeight.w600, color: kPrimaryColor
     ),

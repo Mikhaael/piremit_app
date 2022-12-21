@@ -35,3 +35,25 @@ primaryButton(
           ),
         ),
     );
+
+socialButton({required String image, required GestureTapCallback? onClick}) =>
+    InkWell(
+      onTap: onClick,
+      child: Material(
+          child: Container(
+            height: 24.0,
+            width: 24.0,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(9),
+              border: Border.all(color: Colors.grey.shade300),
+              color: Colors.transparent,
+            ),
+            child: Image(
+              image: AssetImage(image),
+              width: 24.0,
+              height: 24.0,
+            ),
+          ),
+      ),
+    );

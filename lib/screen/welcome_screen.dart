@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:piremit_app/components/buttons.dart';
 import 'package:piremit_app/components/dimens.dart';
+import 'package:piremit_app/components/routes.dart';
 import 'package:piremit_app/piremit_theme.dart';
 import 'package:piremit_app/utils/designs/colors.dart';
 import 'package:piremit_app/utils/res/res_profile.dart';
@@ -21,8 +22,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           body: SafeArea(
               child: ListView(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 60,
-                  vertical: 14,
+                  horizontal: 60.0,
+                  vertical: 14.0,
                 ),
                 children: [
                   const Image(
@@ -45,7 +46,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   vSpace(space * 5.2),
                   primaryButton(
                       text: ResWelcomeScreen.getStarted,
-                      onClick: () {},
+                      onClick: () {
+                        Navigator.pushNamed(context, Routes.register);
+                      },
                       fillColor: kPrimaryColor,
                       textColor: Colors.white,
                   ),
