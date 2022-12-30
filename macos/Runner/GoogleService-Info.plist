@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>57687386174-gvm9us1o845dqc3ej5krqj8okf2lep1p.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.57687386174-gvm9us1o845dqc3ej5krqj8okf2lep1p</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBMJg6J4UVY7xNVOKnWTYuXgEYC-7dgzuE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>57687386174</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.piremitApp</string>
+	<key>PROJECT_ID</key>
+	<string>piremit-banking-app-98373</string>
+	<key>STORAGE_BUCKET</key>
+	<string>piremit-banking-app-98373.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:57687386174:ios:c49e32c59a9114ee72896f</string>
+	<key>DATABASE_URL</key>
+	<string>https://piremit-banking-app-98373-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

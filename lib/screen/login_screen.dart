@@ -9,6 +9,8 @@ import 'package:piremit_app/utils/designs/assets.dart';
 import 'package:piremit_app/utils/designs/colors.dart';
 import 'package:piremit_app/utils/res/res_profile.dart';
 
+import '../utils/auth/auth_state.dart';
+
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -21,18 +23,21 @@ const double space = 18;
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final nameController = TextEditingController();
 
   final form = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(loginState);
+
     return Scaffold(
       body: SafeArea(
         child: Form(
           key: form,
           child: ListView(
             padding: const EdgeInsets.symmetric(
-                horizontal: 40.0,
+                horizontal: 35.0,
                 vertical: 24.0
             ),
             children: [
@@ -61,9 +66,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               vSpace(space * 3.8),
               EmailField(
                   state: TextFieldState(
+                    labelText: ResRegisterScreen.email,
                     controller: emailController,
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
+                    validator: (value) {
+                      if (value?.isEmpty == true) {
+                        return 'Email cannot be empty';
+                      }
+                      return null;
+                    }
                   )
               ),
               vSpace(space * 1.9),
@@ -72,6 +84,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   labelText: ResRegisterScreen.password,
                   controller: passwordController,
                   keyboardType: TextInputType.visiblePassword,
+                  validator: (value) {
+                    if (value?.isEmpty == true) {
+                      return 'Password cannot be empty';
+                    }
+                    return null;
+                  }
                 ),
               ),
               vSpace(space * 0.3),
@@ -79,13 +97,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                  mainAxisAlignment: MainAxisAlignment.end,
                  children: [
                    InkWell(
-                     onTap: () {},
+                     onTap: () {
+                       Navigator.pushNamed(context, Routes.forgotPassword1);
+                     },
                      child: Text(
                        ResLoginScreen.forgotPassword,
                        style: PiremitTheme.lightTextTheme.headline3?.copyWith(
                          fontSize: 10.0,
                          fontWeight: FontWeight.w300,
-                         color: Colors.pinkAccent,
+                         color: Colors.redAccent,
                        ),
                      ),
                    ),
@@ -93,8 +113,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                ),
               vSpace(space * 3.2),
               primaryButton(
+                  isLoading: state.isLoginLoading,
                   text: ResLoginScreen.next,
-                  onClick: () {},
+                  onClick: () => state.onLoginClick(
+                      form: form,
+                      ref: ref,
+                      nameController: nameController,
+                      emailController: emailController,
+                      passwordController: passwordController,
+                      context: context
+                  ),
                   fillColor: kPrimaryColor,
                   textColor: Colors.white
               ),
@@ -152,5 +180,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 }

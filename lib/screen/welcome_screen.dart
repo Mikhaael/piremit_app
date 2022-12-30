@@ -22,7 +22,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           body: SafeArea(
               child: ListView(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 60.0,
+                  horizontal: 35.0,
                   vertical: 14.0,
                 ),
                 children: [
@@ -44,7 +44,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     style: PiremitTheme.lightTextTheme.headline4,
                   ),
                   vSpace(space * 5.2),
-                  primaryButton(
+                  welcomeButton(
                       text: ResWelcomeScreen.getStarted,
                       onClick: () {
                         Navigator.pushNamed(context, Routes.register);

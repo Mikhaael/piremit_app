@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:piremit_app/components/buttons.dart';
@@ -7,9 +8,9 @@ import 'package:piremit_app/piremit_theme.dart';
 import 'package:piremit_app/utils/designs/assets.dart';
 import 'package:piremit_app/utils/designs/colors.dart';
 import 'package:piremit_app/utils/res/res_profile.dart';
-import 'package:piremit_app/components/phone_widget/intl_phone_field.dart';
 
 import '../components/routes.dart';
+import '../utils/auth/auth_state.dart';
 
 
 class RegisterScreen extends ConsumerStatefulWidget {
@@ -31,14 +32,15 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final _key = useState(GlobalKey<FormFieldState>());
+    final state = ref.watch(loginState);
+
     return Scaffold(
       body: SafeArea(
         child: Form(
           key: form,
           child: ListView(
             padding: const EdgeInsets.symmetric(
-              horizontal: 40.0,
+              horizontal: 30.0,
               vertical: 24.0
             ),
             children: [
@@ -72,40 +74,67 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     controller: nameController,
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.next,
+                    validator: (value) {
+                      if (value?.isEmpty == true) {
+                        return 'Name cannot be empty';
+                      }
+                      return null;
+                    }
                   ),
               ),
               vSpace(space * 1.9),
               EmailField(
                   state: TextFieldState(
+                    labelText: ResRegisterScreen.email,
                     controller: emailController,
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
+                    validator: (value) {
+                      if (value?.isEmpty == true) {
+                        return 'Email cannot be empty';
+                      }
+                      return null;
+                    }
                   )
               ),
+
               vSpace(space * 1.9),
-              IntlPhoneField(
-                  textInputAction: TextInputAction.next,
-                  controller: phoneController,
-                  keyboardType: TextInputType.phone,
-                initialCountryCode: 'NG',
-                onChanged: (phone) {
-                  print(phone.completeNumber);
-                },
-                ),
               vSpace(space * 1.9),
+
+
               PasswordField(
                 state: TextFieldState(
                   labelText: ResRegisterScreen.password,
                   controller: passwordController,
                   keyboardType: TextInputType.visiblePassword,
+                  validator: (value) {
+                    if (value?.isEmpty == true) {
+                      return 'Password cannot be empty';
+                    }
+                    return null;
+                  }
                 ),
               ),
               vSpace(space * 1.6),
-              primaryButton(
-                  text: ResRegisterScreen.next,
-                  onClick: () {},
-                  fillColor: kPrimaryColor,
-                  textColor: Colors.white,
+              // primaryButton(
+              //     isLoading: state.isLoginLoading,
+              //     text: ResRegisterScreen.next,
+              //     onClick: () => state.onLoginClick(
+              //         form: form,
+              //         ref: ref,
+              //         nameController: nameController,
+              //         emailController: emailController,
+              //         passwordController: passwordController,
+              //         context: context
+              //     ),
+              //     fillColor: kPrimaryColor,
+              //     textColor: Colors.white,
+              // ),
+              welcomeButton(
+                  text: ResRegisterScreen.next, 
+                  onClick: () => Navigator.pushNamed(context, Routes.enterCode),
+                  fillColor: kPrimaryColor, 
+                  textColor: Colors.white
               ),
               vSpace(space / 6),
               Row(
@@ -127,7 +156,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                       ResRegisterScreen.login,
                       style: PiremitTheme.lightTextTheme.headline3?.copyWith(
                         fontSize: 10.0,
-                        color: Colors.pinkAccent,
+                        color: Colors.redAccent,
                       ),
                     ),
                   )
@@ -161,5 +190,15 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
         ),
       ),
     );
+  }
+
+
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 }

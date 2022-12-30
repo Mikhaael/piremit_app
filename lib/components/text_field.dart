@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:piremit_app/components/dimens.dart';
 import 'package:piremit_app/piremit_theme.dart';
 import 'package:piremit_app/utils/designs/colors.dart';
 import 'package:piremit_app/utils/res/res_profile.dart';
@@ -141,7 +142,7 @@ class _EmailFieldState extends State<EmailField> {
 
     return NameField(
       state: state.copyWith(
-        labelText: (state.label.isEmpty) ? ResRegisterScreen.email : state.label,
+        // labelText: (state.label.isEmpty) ? ResRegisterScreen.email : state.label,
         keyboardType: TextInputType.emailAddress,
         validator: (value) {
           if (value != null) {
@@ -150,6 +151,7 @@ class _EmailFieldState extends State<EmailField> {
             }
             return 'Enter a valid Email Address';
           }
+          return null;
         },
       ),
     );
@@ -192,4 +194,94 @@ class _PasswordFieldState extends State<PasswordField> {
     );
   }
 }
+
+class OtpInput extends StatelessWidget {
+  final TextEditingController controller;
+
+  const OtpInput(this.controller, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 50.0,
+      width: 50.0,
+      child: TextField(
+        textAlign: TextAlign.center,
+        keyboardType: TextInputType.number,
+        controller: controller,
+        maxLength: 1,
+        style: PiremitTheme.lightTextTheme.headline3?.copyWith(
+            fontSize: 24.0,
+            fontWeight: FontWeight.w500,
+            color: Colors.black
+        ),
+        cursorColor: kPrimaryColor,
+        decoration: const InputDecoration(
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 15.0,
+            vertical: 15.0,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+                Radius.circular(10)
+            ),
+            borderSide: BorderSide(color: Color(0xFFD6D6D6), width: 1.0),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
+            ),
+            borderSide: BorderSide(
+                color: Color(0xFFD6D6D6), width: 1.0
+            ),
+          ),
+            counterText: '',
+        ),
+        onChanged: (value) {
+          if (value.length == 1) {
+            FocusScope.of(context).nextFocus();
+          }
+        },
+      ),
+    );
+  }
+}
+
+class OtpFieldInput extends StatefulWidget {
+  const OtpFieldInput({Key? key}) : super(key: key);
+
+  @override
+  State<OtpFieldInput> createState() => _OtpFieldInputState();
+}
+
+const double space = 18;
+class _OtpFieldInputState extends State<OtpFieldInput> {
+
+  final TextEditingController _fieldOne = TextEditingController();
+  final TextEditingController _fieldTwo = TextEditingController();
+  final TextEditingController _fieldThree = TextEditingController();
+  final TextEditingController _fieldFour = TextEditingController();
+
+  String? _otp;
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        OtpInput(_fieldOne), // auto focus
+        hSpace(space * 1.3),
+        OtpInput(_fieldTwo,),
+        hSpace(space * 1.3),
+        OtpInput(_fieldThree),
+        hSpace(space * 1.3),
+        OtpInput(_fieldFour),
+        hSpace(space * 1.3),
+      ],
+    );
+  }
+}
+
+
 

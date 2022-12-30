@@ -35,10 +35,22 @@ class ResLoginScreen {
   static const String signInWith = "SIGN IN WITH";
 }
 
+class ResForgetPassword {
+  ResForgetPassword._();
+
+  static const String forgetPassword = "Forgot Password";
+  static const String fPSubtext = "We know that stuffs happens, kindly enter\nyour email ID or Phone to reset your password";
+  static const String email = "Email ID";
+  static const String phone = "Phone";
+  static const String usePhone = "Use phone number instead?";
+  static const String useEmail = "Use email ID instead?";
+  static const String next = "NEXT";
+}
+
 class ResCodeVerify {
   ResCodeVerify._();
 
   static const String enterCode = "Enter Code";
-  static const String codeDetails = "Enter the 4-digit verification sent to \n +6288105081738/davidpsalmist@gmail.com";
-  static const String next = "Continue";
+  static const String codeDetails = "\n         Enter the 4-digit verification sent to\n+6288105081738/davidpsalmist@gmail.com";
+  static const String next = "CONTINUE";
 }
