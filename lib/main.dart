@@ -6,7 +6,9 @@ import 'package:piremit_app/components/routes.dart';
 import 'package:piremit_app/firebase_options.dart';
 import 'package:piremit_app/utils/designs/colors.dart';
 
-void main()  {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const PiremitApp());
 }
 

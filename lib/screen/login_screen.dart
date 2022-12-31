@@ -165,13 +165,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   ),
                   hSpace(space / 2),
                   socialButton(
-                      image: Assets.facebookImage,
-                      onClick: () {}
+                    image: Assets.googleImage,
+                    isLoading: state.isGoogleLoading,
+                    onPressed: () => state.onGoogleClick(ref, context),
                   ),
                   hSpace(space * 0.8),
                   socialButton(
-                      image: Assets.googleImage,
-                      onClick: () {}
+                    image: Assets.facebookImage,
+                    isLoading: state.isFacebookLoading,
+                    onPressed: () => state.onFacebookClick(ref, context),
                   ),
                 ],
               ),

@@ -72,9 +72,12 @@ welcomeButton(
       ),
     );
 
-socialButton({required String image, required GestureTapCallback? onClick}) =>
+socialButton({
+  required String image,
+  required bool isLoading,
+  required VoidCallback? onPressed}) =>
     InkWell(
-      onTap: onClick,
+      onTap: isLoading ? null : onPressed,
       child: Material(
           child: Container(
             height: 24.0,

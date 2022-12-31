@@ -97,11 +97,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     }
                   )
               ),
-
               vSpace(space * 1.9),
-              vSpace(space * 1.9),
-
-
               PasswordField(
                 state: TextFieldState(
                   labelText: ResRegisterScreen.password,
@@ -116,25 +112,18 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 ),
               ),
               vSpace(space * 1.6),
-              // primaryButton(
-              //     isLoading: state.isLoginLoading,
-              //     text: ResRegisterScreen.next,
-              //     onClick: () => state.onLoginClick(
-              //         form: form,
-              //         ref: ref,
-              //         nameController: nameController,
-              //         emailController: emailController,
-              //         passwordController: passwordController,
-              //         context: context
-              //     ),
-              //     fillColor: kPrimaryColor,
-              //     textColor: Colors.white,
-              // ),
-              welcomeButton(
-                  text: ResRegisterScreen.next, 
-                  onClick: () => Navigator.pushNamed(context, Routes.enterCode),
-                  fillColor: kPrimaryColor, 
-                  textColor: Colors.white
+              primaryButton(
+                  text: ResRegisterScreen.next,
+                  onClick: () => state.onLoginClick(
+                      form: form, ref:
+                  ref, nameController: nameController,
+                      emailController: emailController,
+                      passwordController: passwordController,
+                      context: context,
+                  ),
+                  fillColor: kPrimaryColor,
+                  textColor: Colors.white,
+                  isLoading: state.isLoginLoading,
               ),
               vSpace(space / 6),
               Row(
@@ -175,13 +164,15 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   ),
                   hSpace(space / 2),
                   socialButton(
-                      image: Assets.facebookImage, 
-                      onClick: () {}
+                      image: Assets.googleImage, 
+                      isLoading: state.isGoogleLoading, 
+                      onPressed: () => state.onGoogleClick(ref, context),
                   ),
                   hSpace(space * 0.8),
                   socialButton(
-                      image: Assets.googleImage,
-                      onClick: () {}
+                      image: Assets.facebookImage, 
+                      isLoading: state.isFacebookLoading, 
+                      onPressed: () => state.onFacebookClick(ref, context),
                   ),
                 ],
               )

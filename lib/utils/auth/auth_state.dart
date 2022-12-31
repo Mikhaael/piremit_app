@@ -85,7 +85,7 @@ class LoginState {
   void _handleResult(String? result, BuildContext context) {
     if (result == null) {
       Navigator.pushNamedAndRemoveUntil(
-          context, Routes.welcome, ModalRoute.withName(Routes.welcome));
+          context, Routes.enterCode, ModalRoute.withName(Routes.welcome));
     } else {
       context.showSnackMessage(result);
     }
